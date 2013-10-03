@@ -327,7 +327,7 @@ int main()
 lable: while(true)
 {
     printf("Cal mm yy or Cal yy : ");
-    cha str[100];
+    char str[100];
     gets(str);
     int k=0;
     while(str[k]==' ')++k;
