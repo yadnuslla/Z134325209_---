@@ -267,13 +267,13 @@ int printCal(int year)
 int printCalmmyy(int m,int year)
 {
     
-    int y,c;
+    int y,c,cm;
     int day,d,maxd;
     y=year%100;
     c=year/100;
     day=1;
     char s[20];
-    if(m==1)sprintf(s,"Jan."),maxd=32,--y,m=11;
+    if(m==1)sprintf(s,"Jan."),maxd=32,--y,cm=11;
     if(m==2)
     {
         sprintf(s,"Feb.");
@@ -286,19 +286,19 @@ int printCalmmyy(int m,int year)
             maxd=29;
         }
         --y;
-        m=12;
+        cm=12;
     }
-    if(m==3)sprintf(s,"Mar."),maxd=32,m=1;
-    if(m==4)sprintf(s,"Apr."),maxd=31,m=2;
-    if(m==5)sprintf(s,"May."),maxd=32,m=3;
-    if(m==6)sprintf(s,"Jun."),maxd=31,m=4;
-    if(m==7)sprintf(s,"Jul."),maxd=32,m=5;
-    if(m==8)sprintf(s,"Aug."),maxd=32,m=6;
-    if(m==9)sprintf(s,"Sep."),maxd=31,m=7;
-    if(m==10)sprintf(s,"Oct."),maxd=32,m=8;
-    if(m==11)sprintf(s,"Nov."),maxd=31,m=9;
-    if(m==12)sprintf(s,"Dec."),maxd=32,m=10;
-    d=Gaussformula(1, m,y,c);
+    if(m==3)sprintf(s,"Mar."),maxd=32,cm=1;
+    if(m==4)sprintf(s,"Apr."),maxd=31,cm=2;
+    if(m==5)sprintf(s,"May."),maxd=32,cm=3;
+    if(m==6)sprintf(s,"Jun."),maxd=31,cm=4;
+    if(m==7)sprintf(s,"Jul."),maxd=32,cm=5;
+    if(m==8)sprintf(s,"Aug."),maxd=32,cm=6;
+    if(m==9)sprintf(s,"Sep."),maxd=31,cm=7;
+    if(m==10)sprintf(s,"Oct."),maxd=32,cm=8;
+    if(m==11)sprintf(s,"Nov."),maxd=31,cm=9;
+    if(m==12)sprintf(s,"Dec."),maxd=32,cm=10;
+    d=Gaussformula(1, cm,y,c);
     NSLog(@"          %s  %d          ",s,year);
     NSLog(@"Sun Mon Tue Wed Thu Fri Sat");
     for(int j=0;j<=5;++j)
@@ -331,7 +331,7 @@ lable: while(true)
     gets(str);
     int k=0;
     while(str[k]==' ')++k;
-    if((str[k]=='c'||str[k]=='C')&&(str[k+1]=='a'||str[k+1]=='A')&&(str[k+2]=='l'||str[k+2]=='L'));
+    if(((str[k]=='c'||str[k]=='C')&&(str[k+1]=='a'||str[k+1]=='A')&&(str[k+2]=='l'||str[k+2]=='L'))&&(str[k+3]==' '||str[k+3]=='\0'));
     else
     {
         NSLog(@"-bash: %s: command not found",str);
