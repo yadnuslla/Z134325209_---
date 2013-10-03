@@ -327,16 +327,18 @@ int main()
 lable: while(true)
 {
     printf("Cal mm yy or Cal yy : ");
-    char str[10];
+    cha str[100];
     gets(str);
-    if((str[0]=='c'||str[0]=='C')&&(str[1]=='a'||str[1]=='A')&&(str[2]=='l'||str[2]=='L'));
+    int k=0;
+    while(str[k]==' ')++k;
+    if((str[k]=='c'||str[k]=='C')&&(str[k+1]=='a'||str[k+1]=='A')&&(str[k+2]=='l'||str[k+2]=='L'));
     else
     {
         NSLog(@"-bash: %s: command not found",str);
         goto lable;
     }
     
-    int i=3;
+    int i=k+3;
     while(str[i]==' ')
     {
         ++i;
