@@ -488,7 +488,6 @@ label:while(true)
                         NSLog(@"cal: year %d not in range 1..9999",year);
                         goto label;
                     }
-                
                 }
             }
             else if(k==2)
@@ -574,8 +573,6 @@ label:while(true)
                         goto label;
                     }
                 }
-            
-            
             }
             else if(k==3)
             {
@@ -591,7 +588,7 @@ label:while(true)
                             int year=[a intValue];
                             if(year>=1&&year<=9999)
                             {
-                                printCalmmyy(m,year);
+                                printCal(year);
                                 goto label;
                             }
                             else
@@ -609,37 +606,26 @@ label:while(true)
                     }
                     else
                     {
-                        NSString *a=[NSString stringWithUTF8String:str[1]];
-                        NSString *b=[a substringFromIndex:2];
-                        int m=[b intValue];
+                        NSString *a=[NSString stringWithUTF8String:str[2]];
+                        NSString *b=[NSString stringWithUTF8String:str[3]];
+                        int m=[a intValue];
+                        int year=[b intValue];
                         if(m>=1&&m<=12)
                         {
-                            NSString *a=[NSString stringWithUTF8String:str[2]];
-                            NSString *b=[NSString stringWithUTF8String:str[3]];
-                            int m=[a intValue];
-                            int year=[b intValue];
-                            if(m>=1&&m<=12)
+                            if(year>=1&&year<=9999)
                             {
-                                if(year>=1&&year<=9999)
-                                {
-                                    printCalmmyy(m,year);
-                                    goto label;
-                                }
-                                else
-                                {
-                                    NSLog(@"cal: year %d not in range 1..9999",year);
-                                    goto label;
-                                }
+                                printCalmmyy(m,year);
+                                goto label;
                             }
                             else
                             {
-                                NSLog(@"cal: %@ is neither a month number(1..12) nor a name",a);
+                                NSLog(@"cal: year %d not in range 1..9999",year);
                                 goto label;
                             }
                         }
                         else
                         {
-                            NSLog(@"cal: %@ is neither a month number(1..12) nor a name",b);
+                            NSLog(@"cal: %@ is neither a month number(1..12) nor a name",a);
                             goto label;
                         }
                     }
@@ -658,32 +644,22 @@ label:while(true)
             {
                 if(str[1][0]=='-'&&str[1][1]=='m'&&str[1][2]=='\0')
                 {
-                    NSString *a=[NSString stringWithUTF8String:str[2]];
+                    NSString *a=[NSString stringWithUTF8String:str[3]];
+                    NSString *b=[NSString stringWithUTF8String:str[4]];
                     int m=[a intValue];
+                    int year=[b intValue];
                     if(m>=1&&m<=12)
                     {
-                        NSString *a=[NSString stringWithUTF8String:str[3]];
-                        NSString *b=[NSString stringWithUTF8String:str[4]];
-                        int m=[a intValue];
-                        int year=[b intValue];
-                        if(m>=1&&m<=12)
+                        if(year>=1&&year<=9999)
                         {
-                            if(year>=1&&year<=9999)
-                            {
-                                printCalmmyy(m,year);
-                                goto label;
-                            }
-                            else
-                            {
-                                NSLog(@"cal: year %d not in range 1..9999",year);
-                            }
+                            printCalmmyy(m,year);
+                            goto label;
                         }
                         else
                         {
-                            NSLog(@"cal: %@ is neither a month number(1..12) nor a name",a);
+                            NSLog(@"cal: year %d not in range 1..9999",year);
                             goto label;
                         }
-
                     }
                     else
                     {
@@ -716,14 +692,8 @@ label:while(true)
         {
             NSLog(@"-bash: %s: command not found",str[0]);
             goto label;
-
         }
-    
-    
-    
-    
     }
-    
 }
     return 0;
 }
