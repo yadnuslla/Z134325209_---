@@ -10,7 +10,7 @@
 #import <Foundation/Foundation.h>
 #define NSLog(FORMAT, ...) printf("%s\n", [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String])
 
-char str[512][512];
+
 //获得当前时间
 int GetCurrentTime()
 {
@@ -29,7 +29,6 @@ int GaussGregorian(int d,int m,int y,int c)
     double t=2.6*m-0.2;
     int w=((d+(int)t+5*(y%4)+3*y+5*(c%4))%7+7)%7;
     return w;
-
 }
 //高斯－儒略历
 int GaussJulian(int d,int m,int y,int c)
@@ -43,7 +42,7 @@ int printCal(int year)
 {
     int y,c;
     int day[12][3];
-    NSString *month[12]={@"Jan                   ",@"Feb                   ",@"Mar                   ",@"Apr                   ",@"May                   ",@"Jun                   ",@"Jul                   ",@"Aug                   ",@"Sep                   ",@"Oct                   ",@"Dec                   ",@"Nov                   "};
+    NSString *month[12]={@"         Jan          ",@"         Feb          ",@"         Mar          ",@"         Apr          ",@"         May          ",@"         Jun          ",@"         Jul          ",@"         Aug          ",@"         Sep          ",@"         Oct          ",@"         Dec          ",@"         Nov          "};
     day[0][2]=32,day[2][2]=32,day[3][2]=31,day[4][2]=32,day[5][2]=31,day[6][2]=32,day[7][2]=32,day[8][2]=31,day[9][2]=32,day[10][2]=31,day[11][2]=32;
     y=year%100;
     c=year/100;
@@ -51,7 +50,6 @@ int printCal(int year)
     {
         if(i==1)
         {
-        
             if(year<=1752)
             {
                 if(year%4==0)
@@ -67,14 +65,12 @@ int printCal(int year)
                     day[i][2]=29;
             }
         }
-        
         day[i][1]=1;
         int yy=y;
         if(i==0||i==1)
         {
             yy=y-1;
         }
-        
         if(year>1752)
         {
             day[i][0]=GaussGregorian(1, (i+10)%12+1,yy,c);
@@ -114,7 +110,6 @@ int printCal(int year)
             if(day[0][0]%7<i)break;
         }
         printf(" ");
-        
         for(int i=0;i<=6;++i)
         {
             if(day[1][1]==day[1][2])
@@ -160,7 +155,6 @@ int printCal(int year)
             if(day[3][0]%7<i)break;
         }
         printf(" ");
-        
         for(int i=0;i<=6;++i)
         {
             if(day[4][1]==day[4][2])
@@ -188,7 +182,6 @@ int printCal(int year)
         }
         printf("\n");
     }
-    
     //7~9月
     NSLog(@"%@%@%@",month[6],month[7],month[8]);
     NSLog(@"Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa");
@@ -207,7 +200,6 @@ int printCal(int year)
             if(day[6][0]%7<i)break;
         }
         printf(" ");
-        
         for(int i=0;i<=6;++i)
         {
             if(day[7][1]==day[7][2])
@@ -257,7 +249,6 @@ int printCal(int year)
         }
         printf("\n");
     }
-    
     //10～12月
     NSLog(@"%@%@%@",month[9],month[10],month[11]);
     NSLog(@"Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa");
@@ -305,12 +296,10 @@ int printCal(int year)
         printf("\n");
     }
  return 0;
-
 }
 //输出 y 年 m 月 月历
 int printCalmmyy(int m,int year)
 {
-    
     int y,c,cm;
     int day,d,maxd;
     y=year%100;
@@ -358,7 +347,6 @@ int printCalmmyy(int m,int year)
     if(m==10)sprintf(s,"October  "),maxd=32,cm=8;
     if(m==11)sprintf(s,"November "),maxd=31,cm=9;
     if(m==12)sprintf(s,"December "),maxd=32,cm=10;
-    
     if(year>1752||(year==1752&&m>9))
     {
         d=GaussGregorian(1, cm,y,c);
@@ -394,9 +382,7 @@ int printCalmmyy(int m,int year)
         }
         printf("\n");
     }
-    
     return 0;
-
 }
 //主函数///////////////////////
 int main(int argc, const char * argv[])
@@ -405,6 +391,7 @@ label:while(true)
 {
     @autoreleasepool
     {
+        char str[512][512];
         printf("userMacBook-Air:~ user$ ");
         memset(str,'\0',sizeof(str));
         int i=0,j=0,k=-1;
@@ -425,7 +412,6 @@ label:while(true)
                 ++j;
                 k=i;
             }
-        
         }
 //输入完成。。。。。。。。。。。。。。。。。。。。。。。。。
         if(k==-1)continue;
@@ -433,7 +419,6 @@ label:while(true)
         {
             if(k==0)
             {
-                
                 int date=GetCurrentTime();
                 int year=date/100;
                 int m=date%100;
@@ -475,7 +460,6 @@ label:while(true)
                 }
                 else
                 {
-                    
                     NSString *a=[NSString stringWithUTF8String:str[1]];
                     int year=[a intValue];
                     if(year>=1&&year<=9999)
@@ -507,7 +491,6 @@ label:while(true)
                         }
                         else
                         {
-                            
                             NSLog(@"cal: %@ is neither a month number(1..12) nor a name",a);
                             goto label;
                         }
@@ -527,7 +510,6 @@ label:while(true)
                                 printCal(year);
                                 goto label;
                             }
-                            
                             else
                             {
                                 NSLog(@"cal: year %d not in range 1..9999",year);
@@ -602,7 +584,6 @@ label:while(true)
                             NSLog(@"cal: %@ is neither a month number(1..12) nor a name",a);
                             goto label;
                         }
-                        
                     }
                     else
                     {
@@ -675,8 +656,7 @@ label:while(true)
                     NSLog(@"       cal [-Jjpwy] [-s country_code] [[month] year]");
                     NSLog(@"       cal [-Jeo] [year]");
                     goto label;
-                }
-                
+                } 
             }
             else if(k==5)
             {
